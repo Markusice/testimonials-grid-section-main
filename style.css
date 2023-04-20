@@ -1,0 +1,179 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  3. Set body to 100vh and allow to expand
+  4. Add accessible line-height
+*/
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+:root {
+  --clr-primary: hsl(0, 0%, 100%);
+
+  --clr-violet: hsl(263, 55%, 52%);
+  --clr-dark-gray-blue: hsl(217, 19%, 35%);
+  --clr-dark-black-blue: hsl(219, 29%, 14%);
+
+  --clr-neutral-light-gray: hsl(0, 0%, 81%);
+  --clr-neutral-gray-blue: hsl(210, 46%, 95%);
+}
+
+body {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 0.8125rem;
+  background: var(--clr-neutral-gray-blue);
+}
+
+.content {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-areas:
+    "one"
+    "two"
+    "three"
+    "four"
+    "five";
+  gap: 1.5rem;
+  width: 90%;
+  margin-inline: auto;
+  margin-block: 4rem;
+}
+
+.content__testimonial {
+  padding: 1.6rem;
+  border-radius: 0.5rem;
+}
+
+.content__testimonial > *:where(:not(:first-child)) {
+  margin-top: 1rem;
+}
+
+.content__testimonial:first-child {
+  grid-area: one;
+  background: var(--clr-violet) url("images/bg-pattern-quotation.svg");
+  background-repeat: no-repeat;
+  background-position: top right 10%;
+  color: var(--clr-primary);
+}
+
+.content__testimonial:last-child,
+.content__testimonial:nth-child(3) {
+  background: var(--clr-primary);
+  color: var(--clr-dark-gray-blue);
+}
+
+.content__testimonial:nth-child(2) {
+  grid-area: two;
+  background: var(--clr-dark-gray-blue);
+  color: var(--clr-primary);
+}
+
+.content__testimonial:nth-child(3) {
+  grid-area: three;
+}
+
+.content__testimonial:nth-child(4) {
+  grid-area: four;
+  background: var(--clr-dark-black-blue);
+  color: var(--clr-primary);
+}
+
+.content__testimonial:last-child {
+  grid-area: five;
+}
+
+.content__testimonial > .grid-group > .role {
+  opacity: 50%;
+}
+
+.content__testimonial > h2 {
+  font-weight: 500;
+}
+
+.content__testimonial > .quote {
+  opacity: 70%;
+}
+
+.grid-group {
+  display: grid;
+  align-items: center;
+  grid-template-columns: max-content max-content;
+  column-gap: 1em;
+}
+
+.grid-group > .profile-pic {
+  grid-row: span 2;
+  border-radius: 100%;
+  width: 1.75rem;
+}
+
+.content__testimonial:first-child > .grid-group > .profile-pic,
+.content__testimonial:nth-child(4) > .grid-group > .profile-pic {
+  border: 2px solid #a775f1;
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+    grid-template-areas:
+      "one one two three"
+      "four four five five";
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .content {
+    grid-template-areas:
+      "one one two five"
+      "three four four five";
+  }
+
+  .content__testimonial:first-child {
+    background-position: top right 20%;
+  }
+}
